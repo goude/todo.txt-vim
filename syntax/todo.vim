@@ -10,7 +10,6 @@ if exists("b:current_syntax")
 endif
 
 syntax  match  TodoDone       '^[xX]\s.\+$'
-syntax  match  TodoContextSparetime  '^.\+@sparetime.*$'
 
 syntax  match  TodoPriorityA  '^([aA])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 syntax  match  TodoPriorityB  '^([bB])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
@@ -43,15 +42,20 @@ syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
 syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
 syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
+syntax  match  TodoTagTid    '\(^\|\W\)tid:[^[:blank:]]\+'  contains=NONE
+
+"syntax  match  TodoContextSparetime  '^.\+@sparetime.*$'
+"highlight  default  link  TodoContextSparetime  Comment
+
 " Other priority colours might be defined by the user
 highlight  default  link  TodoDone              Comment
-highlight  default  link  TodoContextSparetime  Comment
 highlight  default  link  TodoPriorityA         Constant
 highlight  default  link  TodoPriorityB         Statement
 highlight  default  link  TodoPriorityC         Identifier
 highlight  default  link  TodoDate              PreProc
 highlight  default  link  TodoProject           Special
 highlight  default  link  TodoContext           Special
+highlight  default  link  TodoTagTid            Comment
 
 if exists('g:todo_load_python') && g:todo_load_python
     if has('python')
